@@ -16,19 +16,25 @@ namespace eosio {
 
          void sendemail( account_name from, 
                          account_name to,
-                         string       email );
-
+                         string       emailhash );
 
       private:
-         struct account {
+         struct email {
 			account_name owner;
-			string       email;
+			string       emailhash;
 			bool         is_sender = false;
+			bool         is_cc = false;
+			bool         is_bcc = false;
+			uint32_t     status = 0;
+			time         create_date;
+			time         update_date;
 
 			uint64_t primary_key()const { return owner; }
+			string get_emailhash()const { return emailhash; }
 		};
 
-         typedef eosio::multi_index<N(accounts), account> accounts;
+        typedef eosio::multi_index<N(emails), email, 
+			indexed_by< N(byemail), const_mem_fun<limit_order, string, &email::get_expiration> >> emails;
    };
 
 } /// namespace eosio
