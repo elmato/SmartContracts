@@ -7,30 +7,30 @@
 
 namespace eosio {
 
-void bmail::sendemail( account_name from, 
+void bmail::sendmail( account_name from, 
                        account_name to,
-                       string       emailhash ) 
+                       string       mailhash ) 
 {
-    print( "sendemail" );
+    print( "sendmail" );
     require_auth( from );
-	add_email(from, emailhash, true, from);
-	add_email(to, emailhash, false, from);
+	add_mail(from, mailhash, true, from);
+	add_mail(to, mailhash, false, from);
 }
 
-void bmail::add_email( account_name owner, string emailhash, bool is_sender, account_name ram_payer )
+void bmail::add_mail( account_name owner, string mailhash, bool is_sender, account_name ram_payer )
 {
-   emails to_emails( _self, owner );
-   auto existing_email = to_emails.find( emailhash ); //TODO: test search by secondary index email hash
-   if( existing_email == to_acnts.end() ) {
-      to_emails.emplace( ram_payer, [&]( auto& a ){
-        a.emailhash = emailhash;
+   mails to_mails( _self, owner );
+   auto existing_mail = to_mails.find( mailhash ); //TODO: test search by secondary index mail hash
+   if( existing_mail == to_mails.end() ) {
+      to_mails.emplace( ram_payer, [&]( auto& a ){
+        a.mailhash = mailhash;
 	a.is_sender = is_sender;
       });
    } else {
-      eosio_assert( false, "email already exists" );
+      eosio_assert( false, "mail already exists" );
    }
 }
 
 } /// namespace eosio
 
-EOSIO_ABI( eosio::bmail, (sendemail) )
+EOSIO_ABI( eosio::bmail, (sendmail) )
