@@ -35,6 +35,8 @@ namespace eosio {
 
         typedef eosio::multi_index<N(mails), mail, 
 			indexed_by< N(bymail), const_mem_fun<mail, string, &mail::get_mailhash> >> mails;
+	   
+	add_mail( account_name owner, string mailhash, bool is_sender, account_name ram_payer );
    };
 
 } /// namespace eosio
