@@ -34,7 +34,7 @@ namespace eosio {
 		};
 
         typedef eosio::multi_index<N(emails), email, 
-			indexed_by< N(byemail), const_mem_fun<limit_order, string, &email::get_expiration> >> emails;
+			indexed_by< N(byemail), const_mem_fun<email, string, &email::get_emailhash> >> emails;
    };
 
 } /// namespace eosio
