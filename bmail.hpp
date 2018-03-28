@@ -14,9 +14,9 @@ namespace eosio {
       public:
          bmail( account_name self ):contract(self){}
 
-         void sendemail( account_name from, 
+         void sendmail( account_name from, 
                          account_name to,
-                         string       emailhash );
+                         string       mailhash );
 
       private:
          struct mail {
