@@ -19,9 +19,9 @@ namespace eosio {
                          string       emailhash );
 
       private:
-         struct email {
+         struct mail {
 			account_name owner;
-			string       emailhash;
+			string       mailhash;
 			bool         is_sender = false;
 			bool         is_cc = false;
 			bool         is_bcc = false;
@@ -30,11 +30,11 @@ namespace eosio {
 			time         update_date;
 
 			uint64_t primary_key()const { return owner; }
-			string get_emailhash()const { return emailhash; }
+			string get_mailhash()const { return mailhash; }
 		};
 
-        typedef eosio::multi_index<N(emails), email, 
-			indexed_by< N(byemail), const_mem_fun<email, string, &bmail::get_emailhash> >> emails;
+        typedef eosio::multi_index<N(mails), mail, 
+			indexed_by< N(bymail), const_mem_fun<mail, string, &mail::get_mailhash> >> mails;
    };
 
 } /// namespace eosio
