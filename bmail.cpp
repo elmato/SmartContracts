@@ -33,4 +33,4 @@ void bmail::add_email( account_name owner, string emailhash, bool is_sender, acc
 
 } /// namespace eosio
 
-EOSIO_ABI( eosio::token, (sendemail) )
+EOSIO_ABI( eosio::bmail, (sendemail) )
