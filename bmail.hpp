@@ -9,6 +9,7 @@
 namespace eosio {
 
    using std::string;
+   using ipfshash_t = unsigned char[34];
 
    class bmail : public contract {
       public:
@@ -16,12 +17,12 @@ namespace eosio {
 
          void sendmail( account_name  from, 
                         account_name  to,
-                        unsigned char mailhash[34] );
+                        ipfshash_t mailhash );
 
       private:
          struct mail {
 			account_name  owner;
-			unsigned char mailhash[34];
+			ipfshash_t mailhash;
 			bool          is_sender = false;
 			bool          is_cc = false;
 			bool          is_bcc = false;
@@ -34,7 +35,7 @@ namespace eosio {
 
         typedef eosio::multi_index<N(mails), mail> mails;
 	   
-	add_mail( account_name owner, unsigned char mailhash, bool is_sender, account_name ram_payer );
+	add_mail( account_name owner, ipfshash_t mailhash, bool is_sender, account_name ram_payer );
    };
 
 } /// namespace eosio
