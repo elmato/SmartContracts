@@ -20,6 +20,8 @@ void bmail::sendmail( account_name from,
 
 void bmail::add_mail( account_name owner, string mailhash, bool is_sender, account_name ram_payer )
 {
+   eosio_assert(mailhash.size() == 34, "mailhash needs to be a ipfs hash with 34 length");
+
    mails to_mails( _self, owner );
    to_mails.emplace( ram_payer, [&]( auto& a ){
       for (int i=0; i < 34; i++)
