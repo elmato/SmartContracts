@@ -15,13 +15,13 @@ namespace eosio {
          bmail( account_name self ):contract(self){}
 
          void sendmail( account_name from, 
-                         account_name to,
-                         string       mailhash );
+                        account_name to,
+                        char[36]       mailhash );
 
       private:
          struct mail {
 			account_name owner;
-			string       mailhash;
+			char[36]       mailhash;
 			bool         is_sender = false;
 			bool         is_cc = false;
 			bool         is_bcc = false;
