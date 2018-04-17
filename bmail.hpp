@@ -9,7 +9,7 @@
 namespace eosio {
 
    using std::string;
-   using ipfshash_t = unsigned char[34];
+   using ipfshash_t = std::vector<char>;
 
    class bmail : public contract {
       public:
@@ -20,7 +20,9 @@ namespace eosio {
                         string        mailhash );
 
       private:
+	 //@abi table
          struct mail {
+		 mail() { mailhash.resize(34); }
 			account_name  owner;
 			ipfshash_t mailhash;
 			bool          is_sender = false;
