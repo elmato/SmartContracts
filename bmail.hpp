@@ -35,7 +35,7 @@ namespace eosio {
 
         typedef eosio::multi_index<N(mails), mail> mails;
 	   
-	add_mail( account_name owner, ipfshash_t mailhash, bool is_sender, account_name ram_payer );
+	void add_mail( account_name owner, ipfshash_t mailhash, bool is_sender, account_name ram_payer );
    };
 
 } /// namespace eosio
