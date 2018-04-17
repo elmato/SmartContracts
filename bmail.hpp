@@ -17,7 +17,7 @@ namespace eosio {
 
          void sendmail( account_name  from, 
                         account_name  to,
-                        ipfshash_t mailhash );
+                        string        mailhash );
 
       private:
          struct mail {
@@ -35,7 +35,7 @@ namespace eosio {
 
         typedef eosio::multi_index<N(mails), mail> mails;
 	   
-	void add_mail( account_name owner, ipfshash_t mailhash, bool is_sender, account_name ram_payer );
+	void add_mail( account_name owner, string mailhash, bool is_sender, account_name ram_payer );
    };
 
 } /// namespace eosio
