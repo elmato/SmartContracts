@@ -22,8 +22,9 @@ void bmail::add_mail( account_name owner, ipfshash_t mailhash, bool is_sender, a
 {
    mails to_mails( _self, owner );
    to_mails.emplace( ram_payer, [&]( auto& a ){
-      for (int i=0; i < 34; i++)
-          a.mailhash[i] = mailhash[i];
+      //for (int i=0; i < 34; i++)
+      //    a.mailhash[i] = mailhash[i];
+      a.mailhash = mailhash; 
       a.is_sender = is_sender;
    });
 }
