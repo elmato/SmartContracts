@@ -3,13 +3,13 @@
  *  @copyright defined in eos/LICENSE.txt
  */
 
-#include <bmail/bmail.hpp>
+#include <bmail.hpp>
 
 namespace eosio {
 
 void bmail::sendmail( account_name from, 
-                       account_name to,
-                       string       mailhash ) 
+                      account_name to,
+                      char[36]       mailhash ) 
 {
     print( "sendmail" );
     require_auth( from );
@@ -17,7 +17,7 @@ void bmail::sendmail( account_name from,
 	add_mail(to, mailhash, false, from);
 }
 
-void bmail::add_mail( account_name owner, string mailhash, bool is_sender, account_name ram_payer )
+void bmail::add_mail( account_name owner, char[36] mailhash, bool is_sender, account_name ram_payer )
 {
    mails to_mails( _self, owner );
    auto existing_mail = to_mails.find( mailhash ); //TODO: test search by secondary index mail hash
