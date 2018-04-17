@@ -30,13 +30,13 @@ namespace eosio {
 			time          update_date;
 
 			uint64_t primary_key()const { return owner; }
-			string get_mailhash()const { return mailhash; }
+			unsigned char get_mailhash()const { return mailhash; }
 		};
 
         typedef eosio::multi_index<N(mails), mail, 
 			indexed_by< N(bymail), const_mem_fun<mail, string, &mail::get_mailhash> >> mails;
 	   
-	add_mail( account_name owner, string mailhash, bool is_sender, account_name ram_payer );
+	add_mail( account_name owner, unsigned char mailhash, bool is_sender, account_name ram_payer );
    };
 
 } /// namespace eosio
